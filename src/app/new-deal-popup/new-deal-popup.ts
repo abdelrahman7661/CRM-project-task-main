@@ -101,6 +101,7 @@ export class NewDealPopup implements OnInit {
       // if (!check_user) {
       //   return;
       // }
+      // s
       const idd = crypto.randomUUID();
       const date = new Date();
       let dealData = { ...this.new_deal.value, id: idd, date: date, state: 'New' }; // Adding the new Deal
