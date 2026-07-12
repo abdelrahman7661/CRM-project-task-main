@@ -151,14 +151,11 @@
 @if (showNewDealPopup) {
   <app-new-deal-popup
     (close)="close_deal_popup()"
-    (success_state)="show_success_toaster()"
+    (success_state)="show_success_toaster($event)"
     [selected_deal_to_edit]="selected_deal_data_1"
     [edit_mode]="edit_mode_check()"
   />
 }
-<!-- @if (success_popup_state()) {
-  <app-success message="Deal Added successfully" />
-} -->
-@if (success_popup_state() && edit_mode_check()) {
-  <app-success message="Deal Edited successfully" />
+@if (success_popup_state()) {
+  <app-success message="{{ msg() }}" />
 }

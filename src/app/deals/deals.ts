@@ -95,7 +95,10 @@ export class Deals {
     this.showNewDealPopup = true;
   }
 
-  show_success_toaster() {
+  msg = signal('');
+  show_success_toaster(state: any) {
+    this.msg.set(state);
+    console.log(state);
     this.success_popup_state.set(true);
     setTimeout(() => {
       this.success_popup_state.set(false);
@@ -104,6 +107,7 @@ export class Deals {
   close_deal_popup() {
     this.showNewDealPopup = false;
     this.edit_mode_check.set(false);
+    console.log('edit mode state', this.edit_mode_check());
   }
 
   rest() {

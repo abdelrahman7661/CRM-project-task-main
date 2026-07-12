@@ -13,8 +13,8 @@ export class NewDealPopup implements OnInit {
   private services = inject(Services);
   selected_deal_to_edit = input<DealsType>();
   close = output();
-  success_state = output();
-  edit_mode = input<boolean>(false);
+  success_state = output<string>();
+  edit_mode = input<boolean>();
 
   ngOnInit() {
     // to get if there is date to edit
@@ -90,8 +90,7 @@ export class NewDealPopup implements OnInit {
       state: this.selected_deal_to_edit()!.state,
     };
     this.services.edit_deal(new_deal_value);
-    this.success_state.emit();
-
+    this.success_state.emit('Deal Edited Successfully');
     this.closePopup();
   }
 
@@ -107,7 +106,7 @@ export class NewDealPopup implements OnInit {
       let dealData = { ...this.new_deal.value, id: idd, date: date, state: 'New' }; // Adding the new Deal
       this.services.add_new_deal(this.new_deal.value.status!, dealData); // to check the type of new deal status type value
       this.new_deal.reset();
-      this.success_state.emit();
+      this.success_state.emit('Deal Added Successfully');
       this.closePopup();
     } else {
       this.new_deal.markAllAsTouched();
