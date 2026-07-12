@@ -1,0 +1,59 @@
+.user-card {
+  background-color: #d9d9d9;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: grab;
+  max-width: 210px;
+}
+.user-card .user-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+.user-card .name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.user-card .name img {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  cursor: pointer;
+}
+.status {
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.status span {
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin-right: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+.status span:last-of-type {
+  margin: 5px 0;
+}
+.status .state {
+  background-color: #0183bf;
+}
+.status .percentage {
+  background-color: #9f58a3;
+}
+.status .status_val {
+  background-color: #c95aa1;
+}
+.user-card p {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+.user-info {
+  margin-top: 10px;
+  color: rgb(27, 27, 27);
+}
+.user-info p span {
+  font-weight: bold;
+}

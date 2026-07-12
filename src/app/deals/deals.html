@@ -1,0 +1,164 @@
+<app-header />
+<div class="container">
+  <div class="search">
+    <img src="search.png" alt="" />
+    <input
+      type="text"
+      id="Search"
+      placeholder="Search Contacts"
+      (keyup)="search_v2()"
+      [(ngModel)]="searchValue"
+    />
+    @if (searchValue().length !== 0) {
+      <button class="search-btn" (click)="clearSearchValue()">Clear</button>
+    }
+    <button class="add-new-deal-btn" (click)="add_deal_popup()">Add New Deal</button>
+  </div>
+  <!-- --------------search result area -->
+  @if (showSearchResultCard) {
+    <div class="search-result">
+      @for (value of searchResultValue(); track $index) {
+        <app-user-card
+          [userCardData]="value"
+          class="user-card"
+          class="tests"
+          (edit)="edit_selected_deal($event)"
+        />
+      }
+    </div>
+  }
+  @if (!errorMessage() && !loading()) {
+    <div class="deals-main-cards" cdkDropListGroup>
+      <div class="column-container">
+        <h3>Potential Value</h3>
+        <div
+          class="column-content"
+          cdkDropList
+          [cdkDropListData]="this.services.deals_values().new_deals.potential"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <!-- @for (value of services.Potential_Value(); track $index) {
+            <app-user-card
+              [userCardData]="value"
+              status="Potential Value"
+              cdkDrag
+              class="app-user-card"
+            />
+            <span class="space"></span>
+          } -->
+          @for (value of this.services.deals_values().new_deals.potential; track $index) {
+            <app-user-card
+              [userCardData]="value"
+              status="Potential Value"
+              cdkDrag
+              class="app-user-card"
+              (edit)="edit_selected_deal($event)"
+            />
+            <span class="space"></span>
+          }
+        </div>
+      </div>
+      <div class="column-container">
+        <h3>Focus</h3>
+        <div
+          class="column-content"
+          cdkDropList
+          [cdkDropListData]="this.services.deals_values().new_deals.focus"
+          (cdkDropListDropped)="drop($event)"
+        >
+          @for (value of this.services.deals_values().new_deals.focus; track $index) {
+            <app-user-card
+              [userCardData]="value"
+              status="Focus"
+              cdkDrag
+              class="app-user-card"
+              (edit)="edit_selected_deal($event)"
+            />
+            <span class="space"></span>
+          }
+        </div>
+      </div>
+      <div
+        class="column-container"
+        cdkDropList
+        [cdkDropListData]="this.services.deals_values().new_deals.contact_made"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <h3>Contact Made</h3>
+        <div class="column-content">
+          @for (value of this.services.deals_values().new_deals.contact_made; track $index) {
+            <app-user-card
+              [userCardData]="value"
+              status="Contact Made"
+              cdkDrag
+              class="app-user-card"
+              (edit)="edit_selected_deal($event)"
+            />
+            <span class="space"></span>
+          }
+        </div>
+      </div>
+      <div class="column-container">
+        <h3>Offer Sent</h3>
+        <div
+          class="column-content"
+          cdkDropList
+          [cdkDropListData]="this.services.deals_values().new_deals.offer_sent"
+          (cdkDropListDropped)="drop($event)"
+        >
+          @for (value of this.services.deals_values().new_deals.offer_sent; track $index) {
+            <app-user-card
+              [userCardData]="value"
+              status="Offer Sent"
+              cdkDrag
+              class="app-user-card"
+              (edit)="edit_selected_deal($event)"
+            />
+            <span class="space"></span>
+          }
+        </div>
+      </div>
+      <div class="column-container">
+        <h3>Getting Ready</h3>
+        <div
+          class="column-content"
+          cdkDropList
+          [cdkDropListData]="this.services.deals_values().new_deals.getting_ready"
+          (cdkDropListDropped)="drop($event)"
+        >
+          @for (value of this.services.deals_values().new_deals.getting_ready; track $index) {
+            <app-user-card
+              [userCardData]="value"
+              status="Getting Ready"
+              cdkDrag
+              class="app-user-card"
+              (edit)="edit_selected_deal($event)"
+            />
+            <span class="space"></span>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  @if (errorMessage()) {
+    <h2 class="error">Check your internet connection...</h2>
+  }
+  @if (loading() && !errorMessage()) {
+    <h2 class="error">Loading...</h2>
+  }
+</div>
+<!-- new deal popup -->
+@if (showNewDealPopup) {
+  <app-new-deal-popup
+    (close)="close_deal_popup()"
+    (success_state)="show_success_toaster()"
+    [selected_deal_to_edit]="selected_deal_data_1"
+    [edit_mode]="edit_mode_check()"
+  />
+}
+<!-- @if (success_popup_state()) {
+  <app-success message="Deal Added successfully" />
+} -->
+@if (success_popup_state() && edit_mode_check()) {
+  <app-success message="Deal Edited successfully" />
+}

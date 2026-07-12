@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="popup">
+    <header>
+      @if (edit_mode()) {
+        <h2>Edit Deal</h2>
+      } @else {
+        <h2>New Deal</h2>
+      }
+      <button class="exit-btn" (click)="closePopup()">X</button>
+    </header>
+    <form [formGroup]="new_deal" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="inputs">
+          <label for="first_name">First Name</label>
+          <input
+            id="first_name"
+            type="text"
+            formControlName="first_name"
+            [maxlength]="max_length_input"
+          />
+        </div>
+        <div class="inputs">
+          <label for="last_name">Last Name</label>
+          <input
+            id="last_name"
+            type="text"
+            formControlName="last_name"
+            [maxlength]="max_length_input"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="inputs">
+          <label for="phone">Phone</label>
+          <input id="phone" type="text" formControlName="phone" />
+        </div>
+        <div class="inputs">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="inputs">
+          <label for="company">Company</label>
+          <input
+            id="company"
+            type="text"
+            formControlName="company"
+            [maxlength]="max_length_input"
+          />
+        </div>
+      </div>
+      <div class="row status">
+        <select class="status_option" id="status" formControlName="status">
+          <option value="" disabled hidden>Please choose an option</option>
+          <option value="Potential Value">Potential Value</option>
+          <option value="Focus">Focus</option>
+          <option value="Contact">Contact</option>
+          <option value="Offer Sent">Offer Sent</option>
+          <option value="Getting Ready">Getting Ready</option>
+        </select>
+        <div class="percent">
+          <label for="percent">Percent %</label>
+          <input id="percent" type="number" placeholder="0" formControlName="probability_status" />
+        </div>
+      </div>
+      <div class="add-btn">
+        @if (edit_mode()) {
+          <button type="button" (click)="confirm_deal_edit()">Confirm The Edit</button>
+        } @else {
+          <button type="submit">Add New Deal</button>
+        }
+      </div>
+      <div class="error">
+        @if (error_first_name) {
+          <p>Invalid First Name</p>
+        }
+        @if (error_last_name) {
+          <p>Invalid Last Name</p>
+        }
+        @if (error_probability_status) {
+          <p>Invalid Percent range</p>
+        }
+      </div>
+    </form>
+    <!-- <button (click)="confirm_deal_edit()">Confirm The Edit</button> -->
+  </div>
+</div>

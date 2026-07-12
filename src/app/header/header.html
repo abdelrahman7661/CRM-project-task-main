@@ -1,0 +1,24 @@
+<header>
+  <div class="logo">
+    <img src="ibnSinaLogoBgRemoved.png" alt="" />
+  </div>
+  <nav>
+    <a
+      class="nav-btn"
+      routerLink="/deals"
+      routerLinkActive="active"
+      >Deals</a
+    >
+    <a class="nav-btn" routerLink="/Activities" routerLinkActive="active">Activities</a>
+    <a class="nav-btn" routerLink="/Statistics" routerLinkActive="active">Statistics</a>
+    <a class="nav-btn" routerLink="/Setting" routerLinkActive="active">Setting</a>
+    <img class="user_image" src="user_img.jpg"  (click)="show_profile()"/>
+    @if (profile_state) {
+      <div class="profile">
+        <a>About User</a>
+        <span></span>
+        <a>Log out</a>
+      </div>
+    }
+  </nav>
+</header>

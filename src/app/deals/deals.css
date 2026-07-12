@@ -1,0 +1,133 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search {
+  position: relative;
+  margin-top: 8px;
+}
+.search input {
+  width: 400px;
+  height: 30px;
+  border-radius: 17px;
+  border: none;
+  padding: 0px 10px 0 40px;
+  background-color: rgb(205, 205, 205);
+  font-weight: bold;
+}
+.search img {
+  width: 20px;
+  position: absolute;
+  top: 5px;
+  left: 15px;
+}
+.search .search-btn {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  border: none;
+  font-weight: bold;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 15px;
+  background-color: #ff5741;
+  cursor: pointer;
+}
+.search .add-new-deal-btn {
+  position: absolute;
+  width: 110px;
+  height: 30px;
+  border: none;
+  border-radius: 15px;
+  margin-left: 10px;
+  background-color: rgb(44, 174, 113);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.search .search-btn:hover {
+  background-color: #ff2509;
+}
+.search .add-new-deal-btn:hover {
+  background-color: rgb(30, 134, 85);
+}
+.deals-main-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.deals-main-cards .column-container {
+  width: 210px;
+  height: 505px;
+  background-color: #272727;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.column-container h3 {
+  color: white;
+  font-size: 19px;
+  margin-bottom: 5px;
+}
+.column-content {
+  overflow: auto;
+  height: 94%;
+  scrollbar-width: none;
+}
+.app-user-card {
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+.error {
+  font-size: 30px;
+  color: white;
+  margin-top: 100px;
+}
+.search-result {
+  background-color: #272727;
+  padding: 0 10px 10px 10px;
+  border-radius: 12px;
+  margin-top: 10px;
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.user-card {
+  margin-right: 15px;
+}
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow:
+    0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.column-content.cdk-drop-list-dragging .app-user-card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+h1 {
+  color: white;
+}
+.space {
+  margin: 5px 0;
+  /* background-color: red; */
+  width: 100%;
+  display: block;
+  height: 1px;
+}
+.tests {
+  margin: 10px;
+}

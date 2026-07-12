@@ -1,0 +1,14 @@
+<app-header/>
+<div class="container">
+  <button (click)="showPopup()">Rest Save Data</button>
+  <p>To Rest the saved data to get the original data from the Api</p>
+</div>
+@if (popupState) {
+  <div class="popup">
+    <p>Are you sure you want to rest the local data ?</p>
+    <span>
+      <button (click)="restSavedData()">Yes</button>
+      <button (click)="cancel()">No</button>
+    </span>
+  </div>
+}

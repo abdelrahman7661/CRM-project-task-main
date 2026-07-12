@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+h2 {
+  font-size: 40px;
+  color: white;
+}

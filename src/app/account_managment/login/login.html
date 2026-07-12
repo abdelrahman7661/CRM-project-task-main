@@ -1,0 +1,25 @@
+<div class="container">
+    <img src="ibnSinaLogoBgRemoved.png" alt="Ibn Sina" class="logo">
+    <div class="card">
+       <header>
+            <img src="user.png" alt="">
+            <h2>Login</h2>         
+       </header>
+       <form [formGroup]="login" (ngSubmit)="submit()">
+           
+            <div class="field">
+                <label for="">Email</label>
+                <input type="text" formControlName="email">
+            </div>
+            <div class="field">
+                <label for="">Password</label>
+                <input type="text" formControlName="password">
+            </div>
+            
+            <button>Login</button>
+       </form>
+       <a routerLink="sign_up">Create new account</a>
+       <a routerLink="deals">Deals Page</a>
+    </div>
+    <!-- <app-success message="Done2" /> -->
+</div>
