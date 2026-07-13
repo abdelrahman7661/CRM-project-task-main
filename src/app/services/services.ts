@@ -159,15 +159,15 @@ export class Services {
     };
     output.map((value: DealsType) => {
       if (value.status == 'Potential Value') {
-        edited_deals_value.new_deals.potential.push(value);
+        edited_deals_value.new_deals.potential.unshift(value);
       } else if (value.status == 'Focus') {
-        edited_deals_value.new_deals.focus.push(value);
+        edited_deals_value.new_deals.focus.unshift(value);
       } else if (value.status == 'Contact Made') {
-        edited_deals_value.new_deals.contact_made.push(value);
+        edited_deals_value.new_deals.contact_made.unshift(value);
       } else if (value.status == 'Offer Sent') {
-        edited_deals_value.new_deals.offer_sent.push(value);
+        edited_deals_value.new_deals.offer_sent.unshift(value);
       } else if (value.status == 'Getting Ready') {
-        edited_deals_value.new_deals.getting_ready.push(value);
+        edited_deals_value.new_deals.getting_ready.unshift(value);
       }
     });
     console.log(edited_deals_value);
