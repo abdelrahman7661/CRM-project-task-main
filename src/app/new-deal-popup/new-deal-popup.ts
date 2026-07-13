@@ -97,11 +97,6 @@ export class NewDealPopup implements OnInit {
   submit() {
     console.log('submit');
     if (this.new_deal.valid) {
-      // const check_user = window.confirm('Do you want to add this new deal ?');
-      // if (!check_user) {
-      //   return;
-      // }
-      // s
       const idd = crypto.randomUUID();
       const date = new Date();
       let dealData = { ...this.new_deal.value, id: idd, date: date, state: 'New' }; // Adding the new Deal

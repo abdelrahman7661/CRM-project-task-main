@@ -14,6 +14,8 @@ import { NewDealPopup } from '../new-deal-popup/new-deal-popup';
 import { Services } from '../services/services';
 import { Header } from '../header/header';
 import { Success } from '../toster/success/success';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-deals',
@@ -43,12 +45,12 @@ export class Deals {
   selected_deal_data_1: DealsType | undefined;
   edit_mode_check = signal(false);
   success_popup_state = signal(false);
+  current_user = signal<any>(null);
+
+  router = inject(Router);
+  http = inject(HttpClient);
 
   ngOnInit() {
-    if (window.localStorage.getItem('new_deals_value')) {
-      this.services.get_saved_deals();
-      this.loading.set(false);
-    }
     this.services.getUsersData().subscribe({
       error: () => {
         window.alert('Check your internet connection...');

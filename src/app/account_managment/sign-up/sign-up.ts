@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -9,6 +10,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sign-up.css',
 })
 export class SignUp {
+  http = inject(HttpClient)
+
   sign_up = new FormGroup({
     first_name: new FormControl("",Validators.required),
     last_name: new FormControl("",Validators.required),
@@ -19,5 +22,6 @@ export class SignUp {
 
   submit() {
     console.log(this.sign_up.value)
+    // this.http.post()
   }
 }
