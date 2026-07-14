@@ -1,0 +1,41 @@
+@keyframes popup {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.error_popup {
+  z-index: 1000;
+  background-color: rgb(132, 0, 0);
+  width: 280px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0px 15px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%);
+  opacity: 0;
+  animation-name: popup;
+  animation-duration: 4s;
+  /* animation-delay: 0.1s; */
+}
+.icon {
+  width: 30px;
+  margin-right: 10px;
+}
+.text {
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}

@@ -11,11 +11,15 @@ import { CommonModule } from '@angular/common';
 export class UserCard {
   userCardData = input<DealsType>();
   status = input<string>('');
-  // edit_popup = model(); // this is a model two way binding v
   edit = output<DealsType>();
+  delete = output<DealsType>();
 
   export_selected_deal_to_edit() {
-    // this.edit_popup.set(true);
     this.edit.emit(this.userCardData()!);
+  }
+
+  delete_selected_deal_to_edit() {
+    console.log('delete this deal');
+    this.delete.emit(this.userCardData()!);
   }
 }

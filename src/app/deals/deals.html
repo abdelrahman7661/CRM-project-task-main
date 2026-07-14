@@ -23,6 +23,7 @@
           class="user-card"
           class="tests"
           (edit)="edit_selected_deal($event)"
+          (delete)="delete_selected_deal($event)"
         />
       }
     </div>
@@ -37,15 +38,6 @@
           [cdkDropListData]="this.services.deals_values().new_deals.potential"
           (cdkDropListDropped)="drop($event)"
         >
-          <!-- @for (value of services.Potential_Value(); track $index) {
-            <app-user-card
-              [userCardData]="value"
-              status="Potential Value"
-              cdkDrag
-              class="app-user-card"
-            />
-            <span class="space"></span>
-          } -->
           @for (value of this.services.deals_values().new_deals.potential; track $index) {
             <app-user-card
               [userCardData]="value"
@@ -53,6 +45,7 @@
               cdkDrag
               class="app-user-card"
               (edit)="edit_selected_deal($event)"
+              (delete)="delete_selected_deal($event)"
             />
             <span class="space"></span>
           }
@@ -73,6 +66,7 @@
               cdkDrag
               class="app-user-card"
               (edit)="edit_selected_deal($event)"
+              (delete)="delete_selected_deal($event)"
             />
             <span class="space"></span>
           }
@@ -93,6 +87,7 @@
               cdkDrag
               class="app-user-card"
               (edit)="edit_selected_deal($event)"
+              (delete)="delete_selected_deal($event)"
             />
             <span class="space"></span>
           }
@@ -113,6 +108,7 @@
               cdkDrag
               class="app-user-card"
               (edit)="edit_selected_deal($event)"
+              (delete)="delete_selected_deal($event)"
             />
             <span class="space"></span>
           }
@@ -133,6 +129,7 @@
               cdkDrag
               class="app-user-card"
               (edit)="edit_selected_deal($event)"
+              (delete)="delete_selected_deal($event)"
             />
             <span class="space"></span>
           }
@@ -152,10 +149,20 @@
   <app-new-deal-popup
     (close)="close_deal_popup()"
     (success_state)="show_success_toaster($event)"
+    (check_state)="show_check_toaster($event)"
+    (error_state)="show_error_toaster($event)"
     [selected_deal_to_edit]="selected_deal_data_1"
     [edit_mode]="edit_mode_check()"
   />
 }
+
+<!-- toaster Alerts -->
 @if (success_popup_state()) {
   <app-success message="{{ msg() }}" />
+}
+@if (error_popup_state()) {
+  <app-error message="{{ msg() }}" />
+}
+@if (check_popup_state()) {
+  <app-check message="{{ msg() }}" />
 }

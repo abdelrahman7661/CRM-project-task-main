@@ -15,7 +15,9 @@ import { Services } from '../services/services';
 import { Header } from '../header/header';
 import { Success } from '../toster/success/success';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Error } from '../toster/error/error';
+import { Check } from '../toster/check/check';
 
 @Component({
   selector: 'app-deals',
@@ -28,6 +30,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     NewDealPopup,
     Header,
     Success,
+    Error,
+    Check,
   ],
   templateUrl: './deals.html',
   styleUrl: './deals.css',
@@ -44,13 +48,18 @@ export class Deals {
   showNewDealPopup = false;
   selected_deal_data_1: DealsType | undefined;
   edit_mode_check = signal(false);
-  success_popup_state = signal(false);
   current_user = signal<any>(null);
+  success_popup_state = signal(false);
+  error_popup_state = signal(false);
+  check_popup_state = signal(false);
 
   router = inject(Router);
   http = inject(HttpClient);
 
   ngOnInit() {
+    if (this.services.current_user() == null) {
+      this.router.navigateByUrl('/');
+    }
     this.services.getUsersData().subscribe({
       error: () => {
         window.alert('Check your internet connection...');
@@ -66,6 +75,10 @@ export class Deals {
     this.showNewDealPopup = true;
     this.edit_mode_check.set(true);
     this.selected_deal_data_1 = selected_deal;
+  }
+
+  delete_selected_deal(selected_deal: DealsType) {
+    this.services.delete_deal(selected_deal);
   }
 
   search_v2() {
@@ -100,20 +113,26 @@ export class Deals {
   msg = signal('');
   show_success_toaster(state: any) {
     this.msg.set(state);
-    console.log(state);
     this.success_popup_state.set(true);
     setTimeout(() => {
       this.success_popup_state.set(false);
     }, 5000);
   }
+
+  show_check_toaster(text_msg: string) {}
+
+  show_error_toaster(text: string) {
+    this.msg.set(text);
+    this.error_popup_state.set(true);
+    setTimeout(() => {
+      this.error_popup_state.set(false);
+    }, 5000);
+  }
+
   close_deal_popup() {
     this.showNewDealPopup = false;
     this.edit_mode_check.set(false);
     console.log('edit mode state', this.edit_mode_check());
-  }
-
-  rest() {
-    window.localStorage.clear();
   }
 
   drop(event: CdkDragDrop<DealsType[]>) {

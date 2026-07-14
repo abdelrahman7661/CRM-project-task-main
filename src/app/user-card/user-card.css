@@ -50,6 +50,10 @@
   font-size: 13px;
   margin-bottom: 3px;
 }
+.user-card .deal_func {
+  display: flex;
+  align-items: center;
+}
 .user-info {
   margin-top: 10px;
   color: rgb(27, 27, 27);

@@ -18,6 +18,11 @@
             formControlName="first_name"
             [maxlength]="max_length_input"
           />
+          <div class="error_msg">
+            @if (error_first_name) {
+              <p>Invalid First Name</p>
+            }
+          </div>
         </div>
         <div class="inputs">
           <label for="last_name">Last Name</label>
@@ -27,12 +32,17 @@
             formControlName="last_name"
             [maxlength]="max_length_input"
           />
+          <div class="error_msg">
+            @if (error_last_name) {
+              <p>Invalid Last Name</p>
+            }
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="inputs">
           <label for="phone">Phone</label>
-          <input id="phone" type="text" formControlName="phone" />
+          <input id="phone" type="number" formControlName="phone" />
         </div>
         <div class="inputs">
           <label for="email">Email</label>
@@ -61,7 +71,12 @@
         </select>
         <div class="percent">
           <label for="percent">Percent %</label>
-          <input id="percent" type="number" placeholder="0" formControlName="probability_status" />
+          <input id="percent" type="number" formControlName="probability_status" />
+          <div class="error_msg">
+            @if (error_probability_status) {
+              <p>Invalid Percent range</p>
+            }
+          </div>
         </div>
       </div>
       <div class="add-btn">
@@ -71,7 +86,7 @@
           <button type="submit">Add New Deal</button>
         }
       </div>
-      <div class="error">
+      <!-- <div class="error">
         @if (error_first_name) {
           <p>Invalid First Name</p>
         }
@@ -81,7 +96,7 @@
         @if (error_probability_status) {
           <p>Invalid Percent range</p>
         }
-      </div>
+      </div> -->
     </form>
     <!-- <button (click)="confirm_deal_edit()">Confirm The Edit</button> -->
   </div>

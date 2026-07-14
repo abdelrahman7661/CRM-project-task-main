@@ -20,5 +20,7 @@
     <a routerLink="sign_up">Create new account</a>
     <a routerLink="deals">Deals Page</a>
   </div>
-  <!-- <app-success message="Done2" /> -->
+  @if (error_state()) {
+    <app-error message="Invalid Inputs" />
+  }
 </div>

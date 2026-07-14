@@ -13,20 +13,32 @@ export class NewDealPopup implements OnInit {
   private services = inject(Services);
   selected_deal_to_edit = input<DealsType>();
   close = output();
-  success_state = output<string>();
   edit_mode = input<boolean>();
+  success_state = output<string>();
+  error_state = output<string>();
+  check_state = output<string>();
 
   ngOnInit() {
     // to get if there is date to edit
     if (this.edit_mode()) {
+      // to change the phone from api from string to number
+      const digitsOnly_for_phone = this.selected_deal_to_edit()!.phone.replace(/\D/g, '');
+      const phone = Number(digitsOnly_for_phone);
+
+      const digitsOnly_for_percent = this.selected_deal_to_edit()!.probability_status.replace(
+        /\D/g,
+        '',
+      );
+      const percent = Number(digitsOnly_for_percent);
+      console.log(percent);
+
       this.new_deal.patchValue({
         first_name: this.selected_deal_to_edit()?.first_name,
         last_name: this.selected_deal_to_edit()?.last_name,
-        // phone: parseInt(this.selected_deal_to_edit()?.phone),
-        phone: this.selected_deal_to_edit()?.phone,
+        phone: phone,
         email: this.selected_deal_to_edit()?.email,
         company: this.selected_deal_to_edit()?.company,
-        probability_status: this.selected_deal_to_edit()?.probability_status,
+        probability_status: percent,
         status: this.selected_deal_to_edit()?.status,
       });
     }
@@ -35,9 +47,9 @@ export class NewDealPopup implements OnInit {
   closePopup() {
     this.close.emit();
   }
+
   // config for input forms
   max_length_input = 20;
-
   new_deal = new FormGroup({
     first_name: new FormControl('', [
       Validators.minLength(3),
@@ -49,10 +61,10 @@ export class NewDealPopup implements OnInit {
       Validators.maxLength(this.max_length_input),
       Validators.required,
     ]),
-    phone: new FormControl('', [Validators.minLength(5), Validators.required]),
+    phone: new FormControl(0, [Validators.minLength(5), Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     company: new FormControl('', [Validators.required]),
-    probability_status: new FormControl('', [
+    probability_status: new FormControl(0, [
       Validators.required,
       Validators.min(0),
       Validators.max(100),
@@ -95,8 +107,8 @@ export class NewDealPopup implements OnInit {
   }
 
   submit() {
-    console.log('submit');
     if (this.new_deal.valid) {
+      console.log('submit');
       const idd = crypto.randomUUID();
       const date = new Date();
       let dealData = { ...this.new_deal.value, id: idd, date: date, state: 'New' }; // Adding the new Deal
@@ -105,6 +117,7 @@ export class NewDealPopup implements OnInit {
       this.success_state.emit('Deal Added Successfully');
       this.closePopup();
     } else {
+      this.error_state.emit('Invalid Inputs');
       this.new_deal.markAllAsTouched();
     }
   }

@@ -12,7 +12,7 @@
 }
 .container .popup {
   width: 900px;
-  height: 500px;
+  height: 450px;
   background-color: #262626;
   border-radius: 15px;
 }
@@ -72,6 +72,9 @@ header h2 {
   font-size: 18px;
   border: none;
 }
+.container form .error_msg {
+  color: crimson;
+}
 .container form .status {
   justify-self: flex-start;
 }
@@ -81,11 +84,12 @@ header h2 {
 }
 .container form .status .percent {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  /* flex-direction: column; */
 }
 .container form .status .percent label {
   color: white;
-  margin-bottom: 3px;
+  margin-right: 3px;
 }
 .container form .status .percent input {
   width: 100px;
@@ -94,7 +98,9 @@ header h2 {
   padding: 0 10px;
   font-size: 18px;
   border: none;
+  margin-right: 5px;
 }
+
 .container form input:focus-visible {
   outline: none;
 }

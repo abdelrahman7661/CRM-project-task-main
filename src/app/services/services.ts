@@ -128,6 +128,44 @@ export class Services {
     // window.localStorage.setItem('new_deals_value', JSON.stringify(this.deals_values()));
   }
 
+  delete_deal(deal: DealsType) {
+    let all_deals = JSON.parse(window.localStorage.getItem('new_deals_value') || '');
+    const all_old_deals = [
+      ...all_deals.new_deals.potential,
+      ...all_deals.new_deals.offer_sent,
+      ...all_deals.new_deals.getting_ready,
+      ...all_deals.new_deals.focus,
+      ...all_deals.new_deals.contact_made,
+    ];
+
+    const filterd_deal = all_old_deals.filter((value) => value.id !== deal.id);
+
+    let filtered_deals_value: new_deal_value_type = {
+      new_deals: {
+        potential: [],
+        focus: [],
+        contact_made: [],
+        offer_sent: [],
+        getting_ready: [],
+      },
+    };
+
+    filterd_deal.map((value: DealsType) => {
+      if (value.status == 'Potential Value') {
+        filtered_deals_value.new_deals.potential.unshift(value);
+      } else if (value.status == 'Focus') {
+        filtered_deals_value.new_deals.focus.unshift(value);
+      } else if (value.status == 'Contact Made') {
+        filtered_deals_value.new_deals.contact_made.unshift(value);
+      } else if (value.status == 'Offer Sent') {
+        filtered_deals_value.new_deals.offer_sent.unshift(value);
+      } else if (value.status == 'Getting Ready') {
+        filtered_deals_value.new_deals.getting_ready.unshift(value);
+      }
+    });
+    this.create_save(filtered_deals_value);
+  }
+
   edit_deal(deal_data: any) {
     const old_value = window.localStorage.getItem('new_deals_value') || '';
     const saved = JSON.parse(old_value);
